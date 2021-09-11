@@ -1,0 +1,31 @@
+.wrapper{
+    display: flex;
+    width: 100%;   
+    align-content: center;
+    justify-content: center;
+    align-items: baseline;
+
+    padding: 1rem;
+    padding-top: 0;
+}
+.content{
+    width: 85%;
+}
+
+.content h2{
+    font-weight: 400;
+    color: #40364A;
+    font-size: 1.5rem;
+}
+
+.content p{
+    text-align: justify;
+    color: #666666;
+    font-size: 0.8rem;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+}
