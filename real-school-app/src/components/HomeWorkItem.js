@@ -12,7 +12,7 @@ function HomeWorkItem(props) {
                 <p>{props.description}</p>
             </div>
             <div className="actions">
-                <FontAwesomeIcon icon={faTrash} />
+                <FontAwesomeIcon icon={faTrash} onClick={() => props.deleteYourself(props.id)} />
                 <FontAwesomeIcon icon={faEdit} />
             </div>
         </div>);
