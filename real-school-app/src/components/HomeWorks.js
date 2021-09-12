@@ -29,7 +29,7 @@ function HomeWorks(props) {
     }
 
     return (
-        <Card className="centered column absolute">
+        <Card className="column absolute">
             {shouldWindowBeVisible ? <AddHomeWork passHWData={getHWData} closeWindow={closeWindow} /> : null}
             {props.data.map(homework => <HomeWorkItem key={homework.id} id={homework.id} lesson={homework.lesson} description={homework.description} deleteYourself={deleteItem} />)}
             <Button title="Stwórz pracę domową" clickHandle={openHWWindow}></Button>

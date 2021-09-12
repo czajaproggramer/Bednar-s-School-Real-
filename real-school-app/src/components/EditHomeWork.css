@@ -1,0 +1,26 @@
+.editWrapper{
+    display: flex;
+    width: 100%;   
+    align-content: center;
+    justify-content: center;
+    align-items: baseline;
+
+    padding: 1rem;
+    padding-top: 0;
+}
+.eContent{
+    width: 85%;
+}
+.eContent .subjectInput{
+    border: 1px solid #3f3f3f;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #40364A;
+    width: 90%;
+}
+.eContent .descriptionInput{
+    border: 1px solid #3f3f3f;
+    color: #666666;
+    font-size: 0.8rem;
+    width: 90%;
+}
