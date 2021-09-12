@@ -2,7 +2,7 @@
     padding: 1rem;
     display: flex;
     -webkit-box-shadow: 5px 5px 17px 2px rgba(0,0,0,0.29); 
-box-shadow: 5px 5px 17px 2px rgba(0,0,0,0.29);
+    box-shadow: 5px 5px 17px 2px rgba(0,0,0,0.29);
 }
 .centered{
     justify-content: center;
@@ -11,4 +11,8 @@ box-shadow: 5px 5px 17px 2px rgba(0,0,0,0.29);
 
 .column{
     flex-direction: column;
+}
+
+.absolute{
+    position: absolute;
 }

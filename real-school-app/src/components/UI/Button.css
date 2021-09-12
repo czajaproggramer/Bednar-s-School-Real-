@@ -1,10 +1,11 @@
 .basic{
     border: none;
     background-color: #6CCC6A;
-    padding: 1rem 1.2rem;
+    padding: 0.8rem 1.4rem;
     text-align: center;
     color: #fff;
     text-decoration: none;
-    font-size: 2rem;
-    border-radius: 1.2rem;
+    font-size: 1.6rem;
+    border-radius: 1.6rem;
+    font-weight: 400;
 }

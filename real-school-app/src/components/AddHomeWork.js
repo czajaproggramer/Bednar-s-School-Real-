@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import './AddHomeWork.css';
-
-import Card from './UI/Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 function AddHomeWork(props) {
     //stany dla zmiennych z formularza: daty, lekcji i opisu
@@ -26,7 +26,7 @@ function AddHomeWork(props) {
         event.preventDefault(); //Dzięki temu nie odświeży się strona
 
         if (enteredDescription.length > 0) { //Sprawdzamy czy użytkownik dodał opis
-            const homeWorkData = { //Z danych z formularza tworzymy obiekt, który potem dodamy do tablicy 'homeWorks; w App.js
+            const homeWorkData = { //Z danych z formularza tworzymy obiekt, który potem dodamy do tablicy obiektów 'homeWorks' w App.js
                 date: enteredDate,
                 lesson: enteredSubject,
                 description: enteredDescription
@@ -36,7 +36,8 @@ function AddHomeWork(props) {
     };
 
     return (
-        <Card className="column centered">
+        <div className="addWrapper">
+            <div className="infoRow"><h2>Dodaj pracę domową</h2> <FontAwesomeIcon icon={faTimes} color="red" onClick={props.closeWindow} /></div>
             <form onSubmit={submitHandler}>
                 <div className="inputItem">
                     <label>Wybierz datę</label>
@@ -61,7 +62,7 @@ function AddHomeWork(props) {
                     <button type="submit">Dodaj pracę domową</button>
                 </div>
             </form>
-        </Card>
+        </div>
     );
 }
 

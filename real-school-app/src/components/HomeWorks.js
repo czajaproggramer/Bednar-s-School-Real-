@@ -15,6 +15,9 @@ function HomeWorks(props) {
     const openHWWindow = () => {
         setShouldWindowBeVisible(true);
     }
+    const closeWindow = () => {
+        setShouldWindowBeVisible(false);
+    }
     const getHWData = data => {
         const dataWithID = {
             ...data,
@@ -26,10 +29,10 @@ function HomeWorks(props) {
     }
 
     return (
-        <Card className="centered column">
-            {shouldWindowBeVisible ? <AddHomeWork passHWData={getHWData} /> : null}
+        <Card className="centered column absolute">
+            {shouldWindowBeVisible ? <AddHomeWork passHWData={getHWData} closeWindow={closeWindow} /> : null}
             {props.data.map(homework => <HomeWorkItem key={homework.id} id={homework.id} lesson={homework.lesson} description={homework.description} deleteYourself={deleteItem} />)}
-            <Button title="Dodaj pracę domową" clickHandle={openHWWindow}></Button>
+            <Button title="Stwórz pracę domową" clickHandle={openHWWindow}></Button>
         </Card>
     );
 }
