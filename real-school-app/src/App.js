@@ -16,10 +16,15 @@ function App() {
     const newHW = homeWorks.filter((hw) => hw.id !== itemId)
     setHomeWorks(newHW);
   }
+  const addHomeWorkHandler = data => {
+    setHomeWorks(prevState => {
+      return [data, ...prevState];
+    });
+  }
 
   return (
     <div className="App">
-      <HomeWorks deleteItem={deleteItem} data={homeWorks}></HomeWorks>
+      <HomeWorks deleteItem={deleteItem} passData={addHomeWorkHandler} data={homeWorks}></HomeWorks>
     </div>
   );
 }

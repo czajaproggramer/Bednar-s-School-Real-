@@ -1,8 +1,9 @@
 import './Button.css';
 
 function Button(props) {
+    const classes = 'basic ' + props.className;
     return (
-        <button onClick={props.clickHandle}>{props.title}</button>
+        <button className={classes} onClick={props.clickHandle}>{props.title}</button>
     );
 }
 
