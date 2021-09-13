@@ -1,4 +1,4 @@
-.editWrapper{
+.eContent{
     display: flex;
     width: 100%;   
     align-content: center;
@@ -7,9 +7,6 @@
 
     padding: 1rem;
     padding-top: 0;
-}
-.eContent{
-    width: 85%;
 }
 .eContent .subjectInput{
     border: 1px solid #3f3f3f;
@@ -23,4 +20,9 @@
     color: #666666;
     font-size: 0.8rem;
     width: 90%;
+}
+
+button{
+    border: none;
+    background-color: #fff;
 }

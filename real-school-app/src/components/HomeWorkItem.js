@@ -14,6 +14,9 @@ function HomeWorkItem(props) {
     const cancelEditing = () => {
         setWhatToShow(0);
     };
+    const acceptEditing = data => {
+        props.passEdit(data);
+    };
 
     return (
         <div>
@@ -28,7 +31,14 @@ function HomeWorkItem(props) {
                 </div>
             </div>
                 :
-                <EditHomeWork subject={props.lesson} description={props.description} cancelEditing={cancelEditing}></EditHomeWork>
+                <EditHomeWork
+                    id={props.id}
+                    date={props.date}
+                    subject={props.lesson}
+                    description={props.description}
+                    cancelEditing={cancelEditing}
+                    acceptEditing={acceptEditing}>
+                </EditHomeWork>
             }
         </div>
     );
