@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import HomeWorks from "./components/HomeWorks";
 
 const dhomeWorks = [
-  { id: 0, lesson: 'Polski', description: 'napisać wypracowanie o podobieństwach w twórczości Jacka Kaczmarskiego i Peji.' },
-  { id: 1, lesson: 'Informatyka', description: 'stworzyć program pobierający od użytkownika pieniądze' },
-  { id: 2, lesson: 'Biologia', description: 'serce, choroby serca, profilaktyka, browl stars eeeeel primo' },
-  { id: 3, lesson: 'Fizyka', description: 'Fizyka kwantowa, stefek howking i takie tam' },
+  { id: 0, lesson: 'Polski', description: 'napisać wypracowanie o podobieństwach w twórczości Jacka Kaczmarskiego i Peji.', date: '2021-09-12' },
+  { id: 1, lesson: 'Informatyka', description: 'stworzyć program pobierający od użytkownika pieniądze', date: '2021-09-12' },
+  { id: 2, lesson: 'Biologia', description: 'serce, choroby serca, profilaktyka, browl stars eeeeel primo', date: '2021-09-12' },
+  { id: 3, lesson: 'Fizyka', description: 'Fizyka kwantowa, stefek howking i takie tam', date: '2021-09-12' },
 ];
 
 function App() {
