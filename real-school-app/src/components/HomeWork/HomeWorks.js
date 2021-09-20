@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import './HomeWorkItem';
 import HomeWorkItem from './HomeWorkItem';
 import AddHomeWork from './AddHomeWork';
-import Card from './UI/Card';
-import Button from './UI/Button';
+import Card from '../UI/Card';
+import Button from '../UI/Button';
 
 function HomeWorks(props) {
     const [shouldWindowBeVisible, setShouldWindowBeVisible] = useState(false);

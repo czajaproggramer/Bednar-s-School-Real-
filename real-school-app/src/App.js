@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import HomeWorks from "./components/HomeWorks";
-
-const dhomeWorks = [
-  { id: 0, lesson: 'Polski', description: 'napisać wypracowanie o podobieństwach w twórczości Jacka Kaczmarskiego i Peji.', date: '2021-09-12' },
-  { id: 1, lesson: 'Informatyka', description: 'stworzyć program pobierający od użytkownika pieniądze', date: '2021-09-12' },
-  { id: 2, lesson: 'Biologia', description: 'serce, choroby serca, profilaktyka, browl stars eeeeel primo', date: '2021-09-12' },
-  { id: 3, lesson: 'Fizyka', description: 'Fizyka kwantowa, stefek howking i takie tam', date: '2021-09-12' },
-];
+import HomeWorks from "./components/HomeWork/HomeWorks";
 
 function App() {
-  const [homeWorks, setHomeWorks] = useState(dhomeWorks);
+  const [homeWorks, setHomeWorks] = useState([]);
+
+  useEffect(() => {
+    let myHeaders = new Headers();
+    myHeaders.append('Accept', 'text/html');
+    myHeaders.append('Access-Control-Allow-Origin', '*');
+
+    const myInit = {
+      method: 'GET',
+      headers: myHeaders,
+      mode: 'cors'
+    };
+
+    let myRequest = new Request('http://127.0.0.1/szkolna/getHomeWorks.php');
+
+    fetch(myRequest, myInit)
+    .then(data => data.json())
+    .then((result) => {
+      console.log(result);
+    }, (error) => {
+      console.log("Wystąpił błąd");
+    });
+  }, []);
 
   const deleteItem = (itemId) => {
     const newHW = homeWorks.filter((hw) => hw.id !== itemId)
