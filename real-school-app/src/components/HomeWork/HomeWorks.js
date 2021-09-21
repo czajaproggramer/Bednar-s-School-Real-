@@ -34,7 +34,7 @@ function HomeWorks(props) {
     return (
         <Card className="column absolute">
             {shouldWindowBeVisible ? <AddHomeWork passHWData={getHWData} closeWindow={closeWindow} /> : null}
-            {props.data.map(homework => <HomeWorkItem key={homework.id} id={homework.id} lesson={homework.lesson} description={homework.description} date={homework.data} deleteYourself={deleteItem} passEdit={passEdit} />)}
+            {props.data.map(homework => <HomeWorkItem key={homework.id} id={homework.id} lesson={homework.lesson} description={homework.description} date={homework.date} deleteYourself={deleteItem} passEdit={passEdit} />)}
             <Button title="Stwórz pracę domową" clickHandle={openHWWindow}></Button>
         </Card>
     );

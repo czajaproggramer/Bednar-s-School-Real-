@@ -16,12 +16,33 @@ function App() {
       mode: 'cors'
     };
 
+    //id, desc, name, endDate
+
     let myRequest = new Request('http://127.0.0.1/szkolna/getHomeWorks.php');
 
     fetch(myRequest, myInit)
     .then(data => data.json())
     .then((result) => {
-      console.log(result);
+      let fetchedObjects = result.map(element => {
+        const object = {
+          id: element[0],
+          lesson: element[2],
+          description: element[1],
+          date: element[3]
+        }
+        return object;
+      });
+      // result.forEach(element => {
+      //   const object = {
+      //     id: element[0],
+      //     lesson: element[1],
+      //     description: element[2],
+      //     date: element[3]
+      //   };
+      //);
+      setHomeWorks(prevState => {
+        return fetchedObjects
+      });
     }, (error) => {
       console.log("Wystąpił błąd");
     });
