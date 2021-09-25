@@ -1,40 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import './HomeWorkItem';
 import HomeWorkItem from './HomeWorkItem';
 import AddHomeWork from './AddHomeWork';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
+import HWContext from '../../store/hw-context';
 
 function HomeWorks(props) {
+    const ctx = useContext(HWContext);
+
     const [shouldWindowBeVisible, setShouldWindowBeVisible] = useState(false);
 
-    const deleteItem = itemKey => {
-        props.deleteItem(itemKey);
-    };
     const openHWWindow = () => {
         setShouldWindowBeVisible(true);
     };
     const closeWindow = () => {
         setShouldWindowBeVisible(false);
     };
-    const getHWData = data => {
-        const dataWithID = {
-            ...data,
-            id: Math.random().toString()
-        }
-        props.passData(dataWithID);
-
-        setShouldWindowBeVisible(false);
-    };
-    const passEdit = data => {
-        props.passEdit(data);
-    };
 
     return (
         <Card className="column absolute">
-            {shouldWindowBeVisible ? <AddHomeWork passHWData={getHWData} closeWindow={closeWindow} /> : null}
-            {props.data.map(homework => <HomeWorkItem key={homework.id} id={homework.id} lesson={homework.lesson} description={homework.description} date={homework.date} deleteYourself={deleteItem} passEdit={passEdit} />)}
+            {shouldWindowBeVisible ? <AddHomeWork closeWindow={closeWindow} /> : null}
+            {ctx.hwList.map(homework => <HomeWorkItem key={homework.id} id={homework.id} lesson={homework.lesson} description={homework.description} date={homework.date}/>)}
             <Button title="Stwórz pracę domową" clickHandle={openHWWindow}></Button>
         </Card>
     );

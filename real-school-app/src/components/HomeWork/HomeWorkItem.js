@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import './HomeWorkItem.css';
 
@@ -7,8 +7,11 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 import EditHomeWork from './EditHomeWork';
+import HWContext from '../../store/hw-context';
 
 function HomeWorkItem(props) {
+    const ctx = useContext(HWContext);
+
     const [whatToShow, setWhatToShow] = useState(0); //0 - normalny tryb; 1 - tryb edycji
 
     const cancelEditing = () => {
@@ -26,7 +29,7 @@ function HomeWorkItem(props) {
                     <p>{props.description}</p>
                 </div>
                 <div className="actions">
-                    <FontAwesomeIcon icon={faTrash} onClick={() => props.deleteYourself(props.id)} />
+                    <FontAwesomeIcon icon={faTrash} onClick={() => ctx.deleteItem(props.id)} />
                     <FontAwesomeIcon icon={faEdit} onClick={() => { setWhatToShow(1) }} />
                 </div>
             </div>
