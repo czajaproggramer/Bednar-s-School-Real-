@@ -7,29 +7,28 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import AddHomeWorkOption from "./AddHomeWorkOption";
 import HWContext from "../../store/hw-context";
 
-let myHeaders = new Headers();
+// let myHeaders = new Headers();
 
-myHeaders.append('Accept', 'text/html');
-myHeaders.append('Access-Control-Allow-Origin', '*');
+// myHeaders.append('Accept', 'text/html');
+// myHeaders.append('Access-Control-Allow-Origin', '*');
 
-const myInit = {
-    method: 'GET',
-    headers: myHeaders,
-    mode: 'cors'
-};
+// const myInit = {
+//     method: 'GET',
+//     headers: myHeaders,
+//     mode: 'cors'
+// };
 
-let myRequest = new Request('http://127.0.0.1/szkolna/getSubjects.php');
+// let myRequest = new Request('http://127.0.0.1/szkolna/getSubjects.php');
 
 function AddHomeWork(props) {
     const ctx = useContext(HWContext);
 
+    const subjectsList = props.sbList;
+
     //stany dla zmiennych z formularza: daty, lekcji i opisu
     const [enteredDate, setEnteredDate] = useState('2021-09-12');
-    const [enteredSubject, setEnteredSubject] = useState('');
+    const [enteredSubject, setEnteredSubject] = useState(subjectsList[0]['name']);
     const [enteredDescription, setEnteredDescription] = useState('');
-    
-    //stan dla listy lekcji
-    const [subjectsList, setSubjectsList] = useState([]); 
 
     //system przechowywania zmiennych w stanach
     const dateChangeHandler = event => {
@@ -57,26 +56,6 @@ function AddHomeWork(props) {
             props.closeWindow();
         }
     };
-
-    useEffect(() => {
-        fetch(myRequest, myInit)
-        .then((data) => data.json())
-        .then((result) => {
-            let subjects = result.map(subject => {
-                    const object = {
-                        id: subject[0],
-                        name: subject[1]
-                };
-                return object;
-            });
-            setSubjectsList(prevState => {
-                return subjects
-            });
-        }, (error) => {
-            console.log("Wystąpił błąd: " + error);
-        })
-    }, []);
-
 
     return (
         <div className="addWrapper">

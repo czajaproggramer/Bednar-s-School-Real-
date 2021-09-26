@@ -21,7 +21,7 @@ function HomeWorks(props) {
 
     return (
         <Card className="column absolute">
-            {shouldWindowBeVisible ? <AddHomeWork closeWindow={closeWindow} /> : null}
+            {shouldWindowBeVisible ? <AddHomeWork sbList={props.sbList} closeWindow={closeWindow} /> : null}
             {ctx.hwList.map(homework => <HomeWorkItem key={homework.id} id={homework.id} lesson={homework.lesson} description={homework.description} date={homework.date}/>)}
             <Button title="Stwórz pracę domową" clickHandle={openHWWindow}></Button>
         </Card>

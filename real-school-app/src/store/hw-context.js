@@ -13,11 +13,43 @@ export const HWContextProvider = (props) => {
     const [hwList, setHwList] = useState([]);
 
     const deleteItem = (itemId) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost/szkolna/deleteHomeWork.php',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Accept': 'text/html'},
+            data: {
+                homeWorkId: itemId
+            }
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
         const newHW = hwList.filter((hw) => hw.id !== itemId)
         setHwList(newHW);
     };
 
     const editItem = (data) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost/szkolna/editHomeWork.php',
+            mode: 'no-cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Accept': 'text/html'},
+            data: {
+                homeWorkId: data.id,
+                subjectName: data.lesson,
+                description: data.description
+            }
+        });
+
         const hwIndex = hwList.findIndex(hw => hw.id === data.id); //Bierzemy index w tablicy zedytowanej rzeczy
         const newHomeWorks = [...hwList]; //tworzymy kopię tablicy obiektów 'homeWorks'
 
@@ -43,7 +75,7 @@ export const HWContextProvider = (props) => {
                 'Accept': 'text/html'},
             data: {
                 userId: 1,
-                subjectId: 2,
+                subjectName: data.lesson,
                 description: data.description,
                 finalDate: data.date
             }
