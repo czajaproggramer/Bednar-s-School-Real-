@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import axios from 'axios';
 
 const HWContext = React.createContext({
     hwList: [],
@@ -24,7 +25,7 @@ export const HWContextProvider = (props) => {
         newHomeWorks[hwIndex].lesson = data.lesson;
         newHomeWorks[hwIndex].description = data.description;
         if (data.date !== undefined) {
-        newHomeWorks[hwIndex].lesson = data.lesson;
+            newHomeWorks[hwIndex].lesson = data.lesson;
         }
 
         //Zmieniamy stan na kopię tablicy
@@ -32,6 +33,28 @@ export const HWContextProvider = (props) => {
     };
 
     const addHwHandler = (data) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost/szkolna/addHomeWork.php',
+            mode: 'no-cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Accept': 'text/html'},
+            data: {
+                userId: 1,
+                subjectId: 2,
+                description: data.description,
+                finalDate: data.date
+            }
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        
         setHwList(prevState => {
             return [data, ...prevState];
         });

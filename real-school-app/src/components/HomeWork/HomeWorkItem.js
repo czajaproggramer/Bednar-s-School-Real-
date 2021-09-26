@@ -18,7 +18,7 @@ function HomeWorkItem(props) {
         setWhatToShow(0);
     };
     const acceptEditing = data => {
-        props.passEdit(data);
+        ctx.editItem(data);
     };
 
     return (
