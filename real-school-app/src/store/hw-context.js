@@ -69,6 +69,7 @@ export const HWContextProvider = (props) => {
             method: 'post',
             url: 'http://localhost/szkolna/addHomeWork.php',
             mode: 'no-cors',
+            withCredentials: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type',

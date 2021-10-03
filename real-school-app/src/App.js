@@ -1,19 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import HomeWorks from "./components/HomeWork/HomeWorks";
+import LogIn from "./components/LogIn/LogIn";
+
 import HWContext from "./store/hw-context";
-
-let hwHeaders = new Headers();
-hwHeaders.append('Accept', 'text/html');
-hwHeaders.append('Access-Control-Allow-Origin', '*');
-
-const hwInit = {
-  method: 'GET',
-  headers: hwHeaders,
-  mode: 'cors'
-};
-
-let hwRequest = new Request('http://127.0.0.1/szkolna/getHomeWorks.php');
+import AuthContext from "./store/auth-context";
 
 let sbHeaders = new Headers();
 
@@ -30,49 +22,44 @@ let sbRequest = new Request('http://127.0.0.1/szkolna/getSubjects.php');
 
 function App() {
   const ctx = useContext(HWContext);
+  const authCtx = useContext(AuthContext);
 
   const [sbList, setSbList] = useState([]);
 
   useEffect(() => {
-    fetch(hwRequest, hwInit)
-    .then(data => data.json())
+    fetch(sbRequest, sbInit)
+    .then((data) => data.json())
     .then((result) => {
-      let fetchedObjects = result.map(element => {
+      let subjects = result.map(subject => {
         const object = {
-          id: element[0],
-          lesson: element[2],
-          description: element[1],
-          date: element[3]
-        }
+          id: subject[0],
+          name: subject[1]
+        };  
         return object;
       });
-      ctx.setHwList(prevState => {
-        return fetchedObjects
+      setSbList(prevState => {
+        return subjects
       });
-
-      fetch(sbRequest, sbInit)
-      .then((data) => data.json())
-      .then((result) => {
-        let subjects = result.map(subject => {
-          const object = {
-            id: subject[0],
-            name: subject[1]
-          };  
-          return object;
-        });
-        setSbList(prevState => {
-          return subjects
-        });
-      });
-    }, (error) => {
-      console.log("Wystąpił błąd");
     });
+
   }, []);
 
+
+
   return (
-    <div className="App">
-      <HomeWorks sbList={sbList}></HomeWorks>
-    </div>
+    <React.Fragment>
+      <Switch>
+        {authCtx.isLoggedIn ? 
+        <React.Fragment>
+            <Route exact path="/">
+              <Redirect to="/hw" />
+            </Route>
+            <Route path="/hw" component={HomeWorks} />
+          </React.Fragment> :
+          <Route path="/" component={LogIn} />
+        }
+      </Switch>
+    </React.Fragment>
   );
 }
 
